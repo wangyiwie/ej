@@ -6,7 +6,7 @@
         <!-- 按钮结束 -->
 
          <!-- 表格 -->
-        <el-table :data="products">
+        <el-table :data="comment">
             <el-table-column prop="id" label="编号"> </el-table-column>
             <el-table-column prop="content" label="评论内容"></el-table-column>
             <el-table-column prop="commentTime" label="评论时间"></el-table-column>
