@@ -4,12 +4,13 @@
     <el-tab-pane label="所有订单" name="first">
       <el-table :data="allorder">
         <el-table-column prop="id" label="订单编号"></el-table-column>
-        <el-table-column prop="ordertime" label="下单时间"></el-table-column>
+        <el-table-column prop="orderTime" label="下单时间"></el-table-column>
         <el-table-column prop="total" label="总价"></el-table-column>
         <el-table-column prop="status" label="状态"></el-table-column>
         <el-table-column prop="customerId" label="顾客id"></el-table-column>
         <el-table-column label="操作">
           <template v-slot="slot">
+            <a href="" @click.prevent="">详情</a>
           </template>
         </el-table-column>
     </el-table>
@@ -17,7 +18,7 @@
     <el-tab-pane label="待支付" name="second">
       <el-table :data="allorder">
         <el-table-column prop="id" label="订单编号"></el-table-column>
-        <el-table-column prop="ordertime" label="下单时间"></el-table-column>
+        <el-table-column prop="orderTime" label="下单时间"></el-table-column>
         <el-table-column prop="total" label="总价"></el-table-column>
         <el-table-column prop="status" label="状态"></el-table-column>
         <el-table-column prop="customerId" label="顾客id"></el-table-column>
@@ -26,7 +27,7 @@
     <el-tab-pane label="待派单" name="third">
       <el-table :data="allorder">
         <el-table-column prop="id" label="订单编号"></el-table-column>
-        <el-table-column prop="ordertime" label="下单时间"></el-table-column>
+        <el-table-column prop="orderTime" label="下单时间"></el-table-column>
         <el-table-column prop="total" label="总价"></el-table-column>
         <el-table-column prop="status" label="状态"></el-table-column>
         <el-table-column prop="customerId" label="顾客id"></el-table-column>
@@ -40,7 +41,7 @@
     <el-tab-pane label="待接单" name="fourth">
       <el-table :data="allorder">
         <el-table-column prop="id" label="订单编号"></el-table-column>
-        <el-table-column prop="ordertime" label="下单时间"></el-table-column>
+        <el-table-column prop="orderTime" label="下单时间"></el-table-column>
         <el-table-column prop="total" label="总价"></el-table-column>
         <el-table-column prop="status" label="状态"></el-table-column>
         <el-table-column prop="customerId" label="顾客id"></el-table-column>
@@ -51,17 +52,17 @@
     <el-tab-pane label="待服务" name="fifth">
       <el-table :data="allorder">
         <el-table-column prop="id" label="订单编号"></el-table-column>
-        <el-table-column prop="ordertime" label="下单时间"></el-table-column>
+        <el-table-column prop="orderTime" label="下单时间"></el-table-column>
         <el-table-column prop="total" label="总价"></el-table-column>
         <el-table-column prop="status" label="状态"></el-table-column>
         <el-table-column prop="customerId" label="顾客id"></el-table-column>
         <el-table-column prop="waiterId" label="员工id"></el-table-column>
       </el-table>
     </el-tab-pane>
-    <el-tab-pane label="待确定" name="sixth">
+    <el-tab-pane label="待确认" name="sixth">
       <el-table :data="allorder">
         <el-table-column prop="id" label="订单编号"></el-table-column>
-        <el-table-column prop="ordertime" label="下单时间"></el-table-column>
+        <el-table-column prop="orderTime" label="下单时间"></el-table-column>
         <el-table-column prop="total" label="总价"></el-table-column>
         <el-table-column prop="status" label="状态"></el-table-column>
         <el-table-column prop="customerId" label="顾客id"></el-table-column>
@@ -71,7 +72,7 @@
     <el-tab-pane label="已完成" name="seventh">
       <el-table :data="allorder">
         <el-table-column prop="id" label="订单编号"></el-table-column>
-        <el-table-column prop="ordertime" label="下单时间"></el-table-column>
+        <el-table-column prop="orderTime" label="下单时间"></el-table-column>
         <el-table-column prop="total" label="总价"></el-table-column>
         <el-table-column prop="status" label="状态"></el-table-column>
         <el-table-column prop="customerId" label="顾客id"></el-table-column>
@@ -81,21 +82,16 @@
   </el-tabs>
     <!-- 模态框 -->
     <el-dialog
-      title="派单"
-      :visible.sync="visible"
-      width="60%">
-        ---{{form}}
-        <el-form-item label="">
-                    <el-radio-group v-model="form.grnder">
-                        <el-radio label=""></el-radio>
-                        <el-radio label=""></el-radio>
-                    </el-radio-group>
-                </el-form-item>
-      <span slot="footer" class="dialog-footer">
-        <el-button size="small" @click="closeModalHandler">取 消</el-button>
-        <el-button size="small" type="primary" @click="submitHandler">确 定</el-button>
-      </span>
-    </el-dialog>
+            title="派单"
+            :visible.sync="visible"
+            width="60%">
+              <el-radio v-model="radio" label="1"></el-radio>
+              <el-radio v-model="radio" label="2"></el-radio>
+            <span slot="footer" class="dialog-footer">
+            <el-button @click="closeModelHandler" size="small">取 消</el-button>
+            <el-button type="primary" @click="submitHandler" size="small">确 定</el-button>
+            </span>
+      </el-dialog>
     <!-- /模态框 -->
 
   </div>
@@ -108,10 +104,10 @@ export default {
   // 用于存放网页中需要调用的方法
   methods:{
     loadData(){
-      let url = "http://localhost:6677/customer/findAll"
+      let url = "http://localhost:6677/order/findAll"
       request.get(url).then((response)=>{
         // 将查询结果设置到customers中，this指向外部函数的this
-        this.customers = response.data;
+        this.allorder = response.data;
       })
     },
     submitHandler(){
@@ -120,7 +116,7 @@ export default {
       // request.post(url,this.form)
       // 查询字符串 type=customer&age=12
       // 通过request与后台进行交互，并且要携带参数
-      let url = "http://localhost:6677/customer/saveOrUpdate";
+      let url = "http://localhost:6677/order/saveOrUpdate";
       request({
         url,
         method:"POST",
@@ -139,7 +135,6 @@ export default {
           message:response.message
         })
       })
-
     },
     toDeleteHandler(id){
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
@@ -148,7 +143,7 @@ export default {
         type: 'warning'
       }).then(() => {
         //调用后台接口，完成删除操作
-        let url = "http://localhost:6677/customer/deleteById?id"+id;
+        let url = "http://localhost:6677/order/deleteById?id"+id;
         request.get(url).then((response)=>{
           //刷新数据
           this.loadData();
@@ -170,7 +165,7 @@ export default {
     },
     toAddHandler(){
       this.foem = {
-        type : "customer"
+        type : "order"
       }
       this.visible = true;
     }
@@ -179,9 +174,9 @@ export default {
   data(){
     return {
       visible:false,
-      customers:[],
+      allorder:[],
       form:{
-        type:"customer"
+        type:"order"
       }
     }
   },
