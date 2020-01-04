@@ -129,7 +129,7 @@ export default {
         toUpdateHandler(row){
           //模态框的表单中显示当前行的信息
           this.form = row;
-            this.visible=true;
+          this.visible=true;
         }   
     },
     //用于存放要向网页中存放的数据
@@ -145,7 +145,6 @@ export default {
     created(){
         //vue实例创建完毕
         this.loadData()
-
         }
     }
 

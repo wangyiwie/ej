@@ -37,21 +37,22 @@
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
                     <el-form-item label="产品描述">
-                        <el-input v-model="form.description"></el-input>
+                        <el-input type="textarea" v-model="form.description"></el-input>
                     </el-form-item>
                     <el-form-item label="产品价格">
                         <el-input v-model="form.price"></el-input>
-                    </el-form-item>
-                    
-                    <el-form-item label="所属产品">
-                         <el-select v-model="categoryId" placeholder="请选择">
-                            <el-option v-for="item in options" 
-                            :key="item.id"
-                            :label="item.name" 
-                            :value="item.id">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
+                    </el-form-item>                   
+                    <el-form-item label="所属栏目">
+                    <el-select v-model="form.categoryId" placeholder="请选择">
+                        <el-option
+                        v-for="item in options"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+
                     
                     <el-upload class="upload-demo"
                         action="https://jsonplaceholder.typicode.com/posts/"
@@ -138,9 +139,7 @@ export default {
                     type: 'success',
                     message:response.message
                   });  
-
-                })
-                        
+                })                       
             });
         },
         toAddHandler(){
@@ -149,8 +148,9 @@ export default {
         closeModalHandler(){
             this.visible=false;
         },
-        toUpdateHandler(){
+        toUpdateHandler(row){
             this.visible=true;
+            this.form = row;
         }   
     },
     //用于存放要向网页中存放的数据
@@ -160,8 +160,7 @@ export default {
             products:[],
             form:{},
             fileList:[],
-            options: []
-               
+            options: []            
         }
     },
     created(){
