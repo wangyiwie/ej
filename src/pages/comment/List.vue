@@ -6,7 +6,7 @@
         <!-- 按钮结束 -->
 
          <!-- 表格 -->
-        <el-table :data="comment">
+        <el-table :data="comments">
             <el-table-column prop="id" label="编号"> </el-table-column>
             <el-table-column prop="content" label="评论内容"></el-table-column>
             <el-table-column prop="commentTime" label="评论时间"></el-table-column>
@@ -14,7 +14,7 @@
             <el-table-column prop="操作" label="操作">
              <template v-slot="slot">
                 <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
-                <a href="" @click.prevent="toUpdateHandler">修改</a>
+                <a href="" @click.prevent="toUpdateHandler(slot.row)">修改</a>
             </template>
             </el-table-column>
         </el-table>
@@ -39,7 +39,6 @@
                     <el-form-item label="评论时间">
                         <el-input v-model="form.commentTime"></el-input>
                     </el-form-item>
-                    
                 </el-form>  
 
                 <span slot="footer" class="dialog-footer">
@@ -64,7 +63,7 @@ export default {
       let url = "http://localhost:6677/comment/findAll"
       request.get(url).then((response)=>{
         // 将查询结果设置到customers中，this指向外部函数的this
-        this.customers = response.data;
+        this.comments = response.data;
       })
     },
          submitHandler(){
@@ -134,7 +133,7 @@ export default {
     data(){
         return{
             visible:false,
-            customers:[],
+            comments:[],
             form:{
                 type:"comment"
             }
