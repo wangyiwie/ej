@@ -7,10 +7,10 @@
         <!-- 表格 -->
         <el-table :data="products">
             <el-table-column prop="id" label="编号"> </el-table-column>
-            <el-table-column prop="productname" label="产品名称"></el-table-column>
+            <el-table-column prop="name" label="产品名称"></el-table-column>
             <el-table-column prop="price" label="价格"></el-table-column>
             <el-table-column prop="description" label="描述"></el-table-column>
-            <el-table-column prop="所属产品" label="所属产品"></el-table-column>
+            <el-table-column prop="categoryId" label="所属产品"></el-table-column>
             <el-table-column prop="操作" label="操作">
              <template v-slot="slot">
                 <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
@@ -44,9 +44,11 @@
                     </el-form-item>
                     
                     <el-form-item label="所属产品">
-                         <el-select v-model="value" placeholder="请选择">
-                            <el-option v-for="item in options" :key="item.value"
-                            :label="item.label" :value="item.value">
+                         <el-select v-model="categoryId" placeholder="请选择">
+                            <el-option v-for="item in options" 
+                            :key="item.id"
+                            :label="item.name" 
+                            :value="item.id">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -73,6 +75,15 @@ import querystring from 'querystring'
 export default {
     //用于存放网页中需要调用的方法
     methods:{
+        loadCategory(){
+            let url = "http://localhost:6677/category/findAll"
+            request.get(url).then((response)=>{
+                // 将查询结果设置到products中，this指向外部函数的this
+                this.options = response.data;
+            })
+        },
+        
+
         loadData(){
             let url = "http://localhost:6677/product/findAll"
             request.get(url).then((response)=>{
@@ -147,33 +158,16 @@ export default {
         return{
             visible:false,
             products:[],
-            form:{
-                type:"product"
-            },
+            form:{},
              fileList:[],
-            options: [{
-                value: '选项1',
-                label: '黄金糕'
-                }, {
-                value: '选项2',
-                label: '双皮奶'
-                }, {
-                value: '选项3',
-                label: '蚵仔煎'
-                }, {
-                value: '选项4',
-                label: '龙须面'
-                }, {
-                value: '选项5',
-                label: '北京烤鸭'
-                }],
-                value: ''
-            
+            options: []
+               
         }
     },
     created(){
         //vue实例创建完毕
-        this.loadData()
+        this.loadData();
+        this.loadCategory();
         }
     }
 
