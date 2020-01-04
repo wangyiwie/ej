@@ -58,6 +58,7 @@ export default {
             categories:[],
             form:{
                 type:"category"
+                // 
             }
         }
     },
