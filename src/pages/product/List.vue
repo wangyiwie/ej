@@ -159,7 +159,7 @@ export default {
             visible:false,
             products:[],
             form:{},
-             fileList:[],
+            fileList:[],
             options: []
                
         }
