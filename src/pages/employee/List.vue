@@ -1,7 +1,6 @@
 <template>
     <div>
-        <el-button size="small" type="primary" @click="toAddHandler">添加</el-button>
-        <el-button size="small" type="danger">批量删除</el-button>
+        <el-button size="small" type="success" @click="toAddHandler">添加</el-button>
 
         <el-table :data="employees">
             <el-table-column  prop="id" fixed="left" label="编号"></el-table-column>

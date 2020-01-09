@@ -2,7 +2,6 @@
     <div>
          <!-- 按钮 -->
         <el-button type="success" size = "small" @click="toAddHandler">添加</el-button>
-        <el-button size="small" type="danger">批量删除</el-button>
         <!-- 按钮结束 -->
 
          <!-- 表格 -->
