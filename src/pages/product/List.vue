@@ -31,7 +31,7 @@
                 title="录入产品信息"
                 :visible.sync="visible"
                 width="60%">
-                {{form}}
+                <!-- {{form}} -->
                 <el-form ref="form" :model="form" label-width="80px">
                     <el-form-item label="产品名称">
                         <el-input v-model="form.name"></el-input>
