@@ -13,8 +13,9 @@
             <el-table-column prop="orderId" label="订单id"></el-table-column>
             <el-table-column prop="操作" label="操作">
              <template v-slot="slot">
-                <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
                 <a href="" @click.prevent="toUpdateHandler(slot.row)">修改</a>
+                <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
+
             </template>
             </el-table-column>
         </el-table>
