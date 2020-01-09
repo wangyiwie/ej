@@ -88,7 +88,7 @@ export const constantRoutes = [
         path: 'list',
         name: 'CategoryList',
         component: () => import('@/pages/category/List'),
-        meta: { title: '栏目管理', icon: 'star-on' }
+        meta: { title: '栏目管理', icon: 'lanmu' }
       }
     ]
   },
@@ -100,7 +100,7 @@ export const constantRoutes = [
         path: 'list',
         name: 'ProductList',
         component: () => import('@/pages/product/List'),
-        meta: { title: '产品管理', icon: 'present' }
+        meta: { title: '产品管理', icon: 'product' }
       }
     ]
   },
@@ -112,7 +112,7 @@ export const constantRoutes = [
         path: 'list',
         name: 'CommentList',
         component: () => import('@/pages/comment/List'),
-        meta: { title: '评论管理', icon: 'line-round' }
+        meta: { title: '评论管理', icon: 'pinglun' }
       }
     ]
   },
@@ -124,7 +124,7 @@ export const constantRoutes = [
         path: 'list',
         name: 'OrderList',
         component: () => import('@/pages/order/List'),
-        meta: { title: '订单管理', icon: 'notebook-2' }
+        meta: { title: '订单管理', icon: 'dingdan' }
       }
     ]
   },
@@ -136,7 +136,7 @@ export const constantRoutes = [
         path: 'list',
         name: 'AddressList',
         component: () => import('@/pages/address/List'),
-        meta: { title: '地址管理', icon: 'location' }
+        meta: { title: '地址管理', icon: 'address' }
       }
     ]
   },
