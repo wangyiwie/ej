@@ -79,7 +79,7 @@ export default {
             request.get(url).then((response)=>{
                 // 将查询结果设置到products中，this指向外部函数的this
                 this.options = response.data;
-                // mmmm
+                
             })
         },
         loadData(){
