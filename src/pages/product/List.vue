@@ -75,7 +75,7 @@ export default {
     //用于存放网页中需要调用的方法
     methods:{
         loadCategory(){
-            let url = "http://localhost:6677/product/findAll"
+            let url = "http://localhost:6677/category/findAll"
             request.get(url).then((response)=>{
                 // 将查询结果设置到products中，this指向外部函数的this
                 this.options = response.data;
@@ -169,8 +169,7 @@ export default {
             products:[],
             form:{},
             fileList:[],
-            options: [],
-            value: ''
+            options: []
         }
     },
     created(){
