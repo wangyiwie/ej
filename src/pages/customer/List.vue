@@ -11,8 +11,10 @@
         <el-table-column prop="telephone" label="联系方式"></el-table-column>
         <el-table-column prop="操作" label="操作">
             <template v-slot="slot">
-                <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
+              
                 <a href="" @click.prevent="toUpdateHandler(slot.row)">修改</a>
+                <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
+                
             </template>
         </el-table-column>
     </el-table>
@@ -29,7 +31,7 @@
   title="录入顾客信息"
   :visible.sync="visible"
   width="60%">
-  ---{{form}}
+  <!-- ---{{form}} -->
   <el-form :model="form" label-width="80px">
      <el-form-item label="用户名">
          <el-input v-model="form.username"></el-input>
@@ -50,12 +52,8 @@
   </span>
 </el-dialog>
     <!-- 模态框 -->
-
-
 </div>
 </template>
-
-
 <script>
 import request from '@/utils/request'
 import querystring from 'querystring'
@@ -115,8 +113,6 @@ export default {
                         
             });
         },
-
-
         toAddHandler(){
           this.form = {
             type:"customer"

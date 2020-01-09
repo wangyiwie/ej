@@ -13,8 +13,8 @@
             <el-table-column prop="categoryId" label="所属产品"></el-table-column>
             <el-table-column prop="操作" label="操作">
              <template v-slot="slot">
-                <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
                 <a href="" @click.prevent="toUpdateHandler(slot.row)">修改</a>
+                <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
             </template>
             </el-table-column>
         </el-table>
@@ -31,7 +31,7 @@
                 title="录入产品信息"
                 :visible.sync="visible"
                 width="60%">
-                {{form}}
+            <!-- {{form}} -->
                 <el-form ref="form" :model="form" label-width="80px">
                     <el-form-item label="产品名称">
                         <el-input v-model="form.name"></el-input>
@@ -52,8 +52,6 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
-
-                    
                     <el-upload class="upload-demo"
                         action="https://jsonplaceholder.typicode.com/posts/"
                         :on-preview="handlePreview" :on-remove="handleRemove"

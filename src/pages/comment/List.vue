@@ -13,8 +13,9 @@
             <el-table-column prop="orderId" label="订单id"></el-table-column>
             <el-table-column prop="操作" label="操作">
              <template v-slot="slot">
-                <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
                 <a href="" @click.prevent="toUpdateHandler(slot.row)">修改</a>
+                <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
+
             </template>
             </el-table-column>
         </el-table>
@@ -31,7 +32,7 @@
                 title="添加评论"
                 :visible.sync="visible"
                 width="60%">
-                {{form}}
+                <!-- {{form}} -->
                 <el-form ref="form" :model="form" label-width="80px">
                     <el-form-item label="评论内容">
                         <el-input v-model="form.content"></el-input>
@@ -40,7 +41,6 @@
                         <el-input v-model="form.commentTime"></el-input>
                     </el-form-item>
                 </el-form>  
-
                 <span slot="footer" class="dialog-footer">
                     <el-button size="small" @click="closeModalHandler">取 消</el-button>
                     <el-button size="small" type="primary" @click="submitHandler">确 定</el-button>
@@ -107,13 +107,9 @@ export default {
                     type: 'success',
                     message:response.message
                   });  
-
-                })
-                        
+                })                        
             });
         },
-
-
         toAddHandler(){
           this.form = {
             type:"comment"
